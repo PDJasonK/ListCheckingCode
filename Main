@@ -1,0 +1,98 @@
+package ListMaker;
+
+import java.util.Scanner;
+
+public class Main {
+	private static Scanner sc = new Scanner(System.in);
+	private static ListMaker listMaker = new ListMaker();
+
+	public static void main(String []args) {
+		boolean quit = false;
+		int choice = 0;
+		
+		printInstruction();
+		
+		while(!quit) {
+			
+			System.out.println("1부터 6까지의 활용 옵션 선택하기");
+			
+			choice = sc.nextInt();
+			sc.nextLine();
+			
+			switch (choice) {
+			case 0 :
+				printInstruction();
+				break;
+			
+			case 1 :
+				listMaker.printList();
+				break;
+
+			case 2:
+				addlist();
+				break;
+				
+			case 3: 
+				modifyList();
+				break;
+				
+			case 4:
+				removeList();
+				break;
+			case 5:
+				searchForList();
+				
+			case 6 :
+				quit = true;
+			break;
+			}
+		}
+	}
+	
+	
+	private static void printInstruction() {
+		System.out.println("\nPress");
+		System.out.println("\n [0] - 옵션 번호를 입력해주세요.");
+		System.out.println("\n [1] - [입력된 전체 품목 보기] - to print the list of grocery items");
+		System.out.println("\n [2] - [입력하여 제품 등록하기] - to add an item to the list");
+		System.out.println("\n [3] - [수정목록 변경하기] - to modify an item in the list ");
+		System.out.println("\n [4] - [리스트 목록 제거하기] - to remove an item from the list");
+		System.out.println("\n [5] - [작성한 리스트 확인하기] - to search for an item in the list");
+		System.out.println("\n [6] - [어플리케이션 종료하기] - to quit the application");
+
+	}
+	public static void addlist() {
+		System.out.println("[할일 작성하기. - Enter your further plans : ");
+		listMaker.addLists(sc.nextLine());			
+	}
+	
+	public static void modifyList() {
+		System.out.println("[옵션선택 / 할일 작성하기] - ");
+		int itemNo = sc.nextInt();
+		sc.nextLine();
+		System.out.println("[대체할 목록을 작성해주세요]");
+		String newItem = sc.nextLine();
+		listMaker.modifyListMaker( itemNo -1, newItem);
+	}
+	public static void removeList() {
+		System.out.println("[제거할 목록을 자것ㅇ해주세요.]");
+		int itemNo = sc.nextInt();
+		sc.nextLine();
+		listMaker. removeLists( itemNo -1);
+		
+	}
+	public static void searchForList() {
+		System.out.println("[찾을 목록을 작성해주세요.] - Item to search for : ");
+		String searchItem = sc.nextLine();
+		if (listMaker.findList(searchItem) != null) {
+			System.out.println("이" + searchItem + "리스트를 찾았습니다.");
+		}
+		else {
+			System.out.println(searchItem + "[해당 목록은 존재하지 않습니다.] -it's not on the list" );
+		}
+			
+		}
+	}
+	
+	
+	
