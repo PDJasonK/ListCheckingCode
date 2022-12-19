@@ -1,0 +1,42 @@
+package ListMaker;
+
+/*
+
+앞으로 할 계획 ,목록 등의 리스트를 등록, 수정 , 제거 , 찾기 기능으로 확인할 수 있게 하는 코드이다.
+아래의 add , printList , modifyListMaker , removeLists, findList가 각 추가, 추가된내용 확인, 수정, 제거 , 찾기 기능이다.
+또한 Main 메서드에서는 해당 기능들의 설명과 함께 작동 방식을 화면에 구현하게 해두었다. 이러한 상태에서 
+AWT나 Swing으로 구현을하는것은 다음에 도전해볼 생각이다.
+
+*/
+import java.util.ArrayList;
+
+public class ListMaker {
+	private ArrayList<String> listMaker = new ArrayList<>();
+	
+	public void addLists(String list) {
+		listMaker.add(list);
+		
+	}
+	public void printList() {
+		System.out.println("당신의 목록은" + listMaker.size() + "입니다.");
+		for(int i = 0 ; i < listMaker.size(); i ++) {
+		System.out.println((i + 1) + ". " + listMaker.get(i));	
+		}
+	}
+	public void modifyListMaker(int position , String newList) {
+		listMaker.set(position,  newList);
+		System.out.println("이 목록은" + (position+1) + "으로 수정되었습니다.");
+	}
+	public void removeLists(int position) {
+		String theItem = listMaker.get(position);
+		listMaker.remove(position);
+	}
+	public String findList (String searchList) {
+		int position = listMaker.indexOf(searchList);
+		if(position >=0) {
+			return listMaker.get(position);
+		}
+		return null;
+	}
+
+}
